@@ -11,9 +11,9 @@ Unleash the power of Operation with StateFullOpertaion
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [SampleProjects](#Sample)
-- [Usage](#Usage)
-- [Contributors](#Contributors)
+- [SampleProject](#sample)
+- [Usage](#usage)
+- [Contributors](#contributors)
 - [License](#license)
 
 ## Requirements
@@ -21,6 +21,7 @@ Unleash the power of Operation with StateFullOpertaion
 | Platform | Minimum Swift Version | Installation | Status |
 | --- | --- | --- | --- |
 | iOS 9.0+ | 5.3 | [CocoaPods](#cocoapods) | Tested |
+| iOS 9.0+ | 5.3 | [SPM](#swift-package-manager) | Tested |
 
 ## Installation
 
@@ -29,17 +30,30 @@ Unleash the power of Operation with StateFullOpertaion
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate StateFullOpertaion into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'StateFullOpertaion'
+pod 'StateFullOperation'
 ```
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. 
+
+Once you have your Swift package set up, adding Alamofire as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/kiarashvosough1999/StateFullOperation.git", .upToNextMajor(from: "1.0.0"))
+]
+```
+
 
 ## Sample
 
 I have provided one sample project in the repository. To use it clone the repo, Source files for these are in the `Example` directory in project navigator. Have fun!
 
-##Usage
+## Usage
 
 
-###SafeOperation
+### SafeOperation
 
 SafeOperation is a convinient way of using operation.
 It offers new features which the operation itself does not support or could be so tricky to use.
@@ -47,43 +61,55 @@ It offers new features which the operation itself does not support or could be s
 > Subclasses must not override any method of the base Opertaion Class or call them
  , instead they can override the provided method on protocol `OperationLifeCycleProvider` to take control of what should be done.
  
-> `enqueueSelf` can be use to add operation to a Queue, just make sure you provide operation a queue within its initializer.
+> `enqueue` can be use to add operation to a Queue, just make sure you provide operation a queue within its initializer.
 
 #### Subclassing
  
  ```swift
  class MyOperation: SafeOperation {
     
-    override func shouldStartRunnable() throws {
-        try super.shouldStartRunnable()
-        /// do some pre-requireties before the runnable start
+    override func shouldStartOperation() throws {
+        /// do anything before the operation start
+        /// call `super.shouldStartOperation()` in order to start operation
+        try super.shouldStartOperation()
     }
     
-    override func runnable() throws {
-        /// impelement your task here
-        /// call `cancelRunnable()` whenever the task finish
+    // Operation Logic
+    
+    override func operation() throws {
+        /// impelement your logic here
+        /// call `cancelRunnable()` whenever the task should be canceled
+	/// call `finishOperation()` whenever the task finished
     }
     
-    override func finishRunnable() throws {
-        try finishRunnable()
-        /// make sure you call `finishRunnable()`
+    // Compeletion
+    
+    override func finishOperation() throws {
+        try super.finishRunnable()
+        /// make sure you call `super.finishRunnable()` in order to change the operation flags
+    }
+
+    override func didFinishOperation() {
+        /// This method will be called after operation finished and after after `finishOperation()` called
+    }  
+
+    override func willFinishOperation() {
+        /// This method will be called before operation being finished
     }
     
-    override func didFinishRunnable() {
-        // this method will be called sync-ly after runnable retured
-        // if `runnable()` overrided, after it is finished,
-        // `super.runnable()` can be called to run `didFinishRunnable()`
-        // this method will be also called after calling `finishRunnable()`
-        // do whatever after the runnable finished
+    // Cancelation
+    
+    override func cancelOperation() throws {
+        try super.cancelOperation()
+        /// Make sure you call `super.cancelOperation()` in order to change operation flag
     }
     
-    override func cancelRunnable() throws {
-        try super.cancelRunnable()
-        /// make sure you call `super.cancelRunnable()` in order to change operation flag
-    }
+    override func willCancelOperation() {
+        /// This method will be called  before operation being canceled
+    } 
     
-    override func didCancelRunnable() {
-        /// after operation canceled and before the operation is poped from queue this method will be called
+    override func didCancelOperation() {
+        /// After operation canceled and after the operation is poped from queue this method will be called
     }
 }
  ```
