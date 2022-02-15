@@ -187,8 +187,8 @@ open class SafeOperation: Operation, OperationLifeCycleProvider, OperationContro
         try startOperation()
     }
     
-    /// This method will be called right after the checks succeded inside `shouldStartRunnable()`
-    /// It start `runnable` method inside `autorealsepool` block
+    /// This method will be called right after the checks succeded inside `shouldStartOperation()`
+    /// It start `operation` method inside `autorealsepool` block
     open func startOperation() throws {
         try autoreleasepool {
             try operation()
@@ -202,6 +202,11 @@ open class SafeOperation: Operation, OperationLifeCycleProvider, OperationContro
                     throw SFOError.safeOperationError(reason: .operationNotFoundNil)
                 }
                 try self.finishOperation()
+            },{ [weak self] in
+                guard let self = self else {
+                    throw SFOError.safeOperationError(reason: .operationNotFoundNil)
+                }
+                try self.cancelOperation()
             })
         }
     }
@@ -213,7 +218,8 @@ open class SafeOperation: Operation, OperationLifeCycleProvider, OperationContro
         do {
             try cancelOperation()
         } catch {
-            fatalError()
+            debugPrint(error)
+            fatalError(error.localizedDescription)
         }
     }
     

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
                 print(self.queue.operationCount)
             }
             
-            try queue.addTask(identifier: .unique(), queuePriority: .normal, qualityOfService: .userInteractive) { completed in
+            try queue.addTask(identifier: .unique(), queuePriority: .normal, qualityOfService: .userInteractive) { completed, canceled in
                 Thread.sleep(forTimeInterval: 6)
                 print("completed")
                 try completed()
