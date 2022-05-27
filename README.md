@@ -36,10 +36,10 @@ pod 'StateFullOpertaion'
 
 I have provided one sample project in the repository. To use it clone the repo, Source files for these are in the `Example` directory in project navigator. Have fun!
 
-##Usage
+## Usage
 
 
-###SafeOperation
+### SafeOperation
 
 SafeOperation is a convinient way of using operation.
 It offers new features which the operation itself does not support or could be so tricky to use.
