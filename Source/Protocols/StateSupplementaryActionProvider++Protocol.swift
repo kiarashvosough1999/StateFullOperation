@@ -26,30 +26,23 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
-
-/*
  
- Provide StateFull Operation some settable actions
- 
- this could be handy if some extra actions is needed after state change
- as it is not possible to access state directly(bu vice-versa) this protocol make it possible for
- states to execute the block which is provided.
- 
- */
-
+/// Provide StateFull Operation some settable actions.
+/// This could be handy if some extra actions are needed after state change of the ``SafeOperation``
+/// As it is not possible to access state directly, this protocol make it possible to observe changes of state.
 public protocol StateSupplementaryActionProvider: AnyObject {
     
-    typealias WorkerBlock = () -> Void
+    typealias StateChangeNotifierBlock = () -> Void
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `finished`.
-    var onFinished: WorkerBlock? { get }
+    var onFinished: StateChangeNotifierBlock? { get }
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `canceled`.
     /// instead of overriding main() function, override this property and provide a block of what you want when the operation start.
-    var onCanceled: WorkerBlock? { get }
+    var onCanceled: StateChangeNotifierBlock? { get }
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `executing`.
-    var onExecuting: WorkerBlock? { get }
+    var onExecuting: StateChangeNotifierBlock? { get }
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `suspended`.
     /// The operation itself does not support suspending.
@@ -58,5 +51,5 @@ public protocol StateSupplementaryActionProvider: AnyObject {
     /// For URLSessionDataTasks:
     /// - Provide block only on download and upload tasks
     /// - Providing block on other tasks and using it may result in crash, leak and unexpected usage of network data.
-    var onSuspended: WorkerBlock? { get }
+    var onSuspended: StateChangeNotifierBlock? { get }
 }

@@ -27,12 +27,8 @@
 
 import Foundation
 
-/*
- 
- Impelement this protocol on subclasses of Operation in order to handle states
- 
- */
 
+/// Impelement this protocol on subclasses of Operation in order to handle states
 public protocol OperationContextStateProvider: AnyObject {
     
     var operationState: OperationState { get }

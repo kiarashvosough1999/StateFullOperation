@@ -89,7 +89,7 @@ internal final class OperationCancelState: OperationState {
         ))
     }
     
-    internal func await() throws {
+    internal func await<Q>(inside queue: Q) throws where Q : OperationQueue{
         guard let context = context else {
             throw SFOError.operationStateError(reason: .dealocatedOperation(
                 """

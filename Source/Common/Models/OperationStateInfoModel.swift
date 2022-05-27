@@ -39,5 +39,4 @@ public struct OperationStateInfoModel {
         self.enqueuedAfter = enqueuedAfter
         self.suspendedAfter = suspendedAfter
     }
-    
 }

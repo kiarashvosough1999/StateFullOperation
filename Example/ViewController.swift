@@ -16,26 +16,32 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            let op = MyOperation(operationQueue: queue, configuration: .init())
-            try op.enqueue()
+            let op = MyOperation(configuration: .init())
+            try op.enqueue(into: queue)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
                 print(self.queue.operationCount)
             }
             
-            try queue.addTask(identifier: .unique(), queuePriority: .normal, qualityOfService: .userInteractive) { completed in
+            let op1 = try queue.addTask(identifier: .unique(), queuePriority: .low, qualityOfService: .default, { completed in
                 Thread.sleep(forTimeInterval: 6)
                 print("completed")
                 try completed()
-            } onCompleted: {
-                print("onCompleted")
-            } onCanceled: {
-                print("onCanceled")
-            } onFinished: {
-                print("onFinished")
-            } onExecuting: {
-                print("onExecuting")
-            }
+            }, willCanceled: {
+                print("willCanceled")
+            }, didCanceled: {
+                print("didCanceled")
+            }, willFinished: {
+                print("willFinished")
+            }, didFinished: {
+                print("didFinished")
+            }, willExecuting: {
+                print("willExecuting")
+            }, didExecuting: {
+                print("didExecuting")
+            })
+            
+            try op1.finishOperation()
             
         } catch {
             print(error)

@@ -49,7 +49,7 @@ internal final class OperationFinishState: OperationState {
         self.queueState.enqueued = false
     }
     
-    internal func await() throws {
+    internal func await<Q>(inside queue: Q) throws where Q : OperationQueue {
         guard let context = context else {
             throw SFOError.operationStateError(reason: .dealocatedOperation(
                 """

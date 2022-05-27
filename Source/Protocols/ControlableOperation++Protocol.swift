@@ -41,5 +41,5 @@ public protocol OperationController: AnyObject {
     func suspend() throws -> Self
     
     @discardableResult
-    func await() throws -> Self
+    func await<Q>(inside queue: Q) throws -> Self where Q: OperationQueue
 }

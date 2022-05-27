@@ -28,6 +28,7 @@
 import Foundation
 
 public enum SFOError: Error {
+    case stateFullOperationError(reason: SFOStateFullOperationError)
     case operationStateError(reason: SFOOperationStateError)
     case safeOperationError(reason: SFOSafeOperationError)
 }
@@ -38,6 +39,10 @@ public enum SFOOperationStateError: Error {
     case cancelDuringWaitingForDeadline(String)
     case operationAlreadyCanceled(String)
     case misUseError(String)
+}
+
+public enum SFOStateFullOperationError: Error {
+    case queueDealocated(message: String)
 }
 
 public enum SFOSafeOperationError: Error {

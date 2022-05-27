@@ -31,16 +31,16 @@ public protocol OperationLifeCycleProvider {
     
     /// Performs the receiver’s non-concurrent task.
     /// The default implementation of this method does nothing. You should override this method to perform the desired task.
-    /// In your implementation, do not invoke super. This method will automatically execute within an autorelease pool provided by `SafeOperation`,
-    ///  so you do not need to create your own autorelease pool block in your implementation.
+    /// In your implementation, do not invoke super. This method will automatically execute within an autorelease pool provided by ``SafeOperation``,
+    /// so you do not need to create your own autorelease pool block in your implementation.
     /// If you are implementing a concurrent operation,
-    ///  you are not required to override this method but may do so if you plan to call it from your custom `shouldStartRunnable()` method.
+    /// you are not required to override this method but may do so if you plan to call it from your custom `shouldStartOperation()` method.
     func operation() throws
     
     /// Begins the execution of the operation before the runnable method being called.
-    /// The default implementation of this method updates the execution state of the operation and calls the receiver’s `startRunnable()` method.
+    /// The default implementation of this method updates the execution state of the operation and calls the receiver’s `startOperation()` method.
     /// This method also performs several checks to ensure that the operation can actually run if the `shouldCheckForCancelation` is true.
-    ///  For example, if the receiver was cancelled or is already finished, this method simply returns without calling `startRunnable()`.
+    /// For example, if the receiver was cancelled or is already finished, this method simply returns without calling `startOperation()`.
     /// An operation is not considered ready to execute if it is still dependent on other operations that have not yet finished.
     /// If you are implementing a concurrent operation, you must override this method and use it to initiate your operation.
     /// Your custom implementation must not call super at any time. In addition to configuring the execution environment for your task, your implementation of this method must also track the state of the operation and provide appropriate state transitions. When the operation executes and subsequently finishes its work, it should set new values for the isExecuting and isFinished respectively.

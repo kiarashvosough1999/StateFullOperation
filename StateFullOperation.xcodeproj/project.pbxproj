@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE184F2A28411ADF00B8622C /* WorkableItem++Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE184F2928411ADF00B8622C /* WorkableItem++Protocol.swift */; };
+		DE184F2C28411AF100B8622C /* WorkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE184F2B28411AF100B8622C /* WorkItem.swift */; };
 		DE1A7B7827382DC8006AFE65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7B7727382DC8006AFE65 /* AppDelegate.swift */; };
 		DE1A7B7A27382DC8006AFE65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7B7927382DC8006AFE65 /* SceneDelegate.swift */; };
 		DE1A7B7C27382DC8006AFE65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7B7B27382DC8006AFE65 /* ViewController.swift */; };
@@ -15,7 +17,6 @@
 		DE1A7B8427382DCC006AFE65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1A7B8227382DCC006AFE65 /* LaunchScreen.storyboard */; };
 		DE1A7B8B27382EFC006AFE65 /* StateFullOperation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A7B2327382CB6006AFE65 /* StateFullOperation.framework */; };
 		DE1A7B8C27382EFC006AFE65 /* StateFullOperation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A7B2327382CB6006AFE65 /* StateFullOperation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DE4A37FE27BBFC6400EF7288 /* SFOAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A37FD27BBFC6400EF7288 /* SFOAlias.swift */; };
 		DE4A380027BBFC6A00EF7288 /* OperationQueue++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A37FF27BBFC6A00EF7288 /* OperationQueue++Extension.swift */; };
 		DE4A380227BBFC6F00EF7288 /* SFOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A380127BBFC6F00EF7288 /* SFOError.swift */; };
 		DE4A380927BBFC9000EF7288 /* OperationFinishState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A380427BBFC9000EF7288 /* OperationFinishState.swift */; };
@@ -35,7 +36,6 @@
 		DE4A382527BBFCC600EF7288 /* OperationContextStateObject++Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A381C27BBFCC500EF7288 /* OperationContextStateObject++Protocol.swift */; };
 		DE4A382627BBFCC600EF7288 /* OperationLifeCycleProvider++Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A381D27BBFCC500EF7288 /* OperationLifeCycleProvider++Protocol.swift */; };
 		DE4A382727BBFCC600EF7288 /* OperationState++Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A381E27BBFCC500EF7288 /* OperationState++Protocol.swift */; };
-		DE4A382827BBFCC600EF7288 /* QueueableOperation++Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A381F27BBFCC500EF7288 /* QueueableOperation++Protocol.swift */; };
 		DE4A382927BBFCC600EF7288 /* StateSupplementaryActionProvider++Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A382027BBFCC600EF7288 /* StateSupplementaryActionProvider++Protocol.swift */; };
 		DE4A382D27BBFCDC00EF7288 /* OperationStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A382A27BBFCDC00EF7288 /* OperationStates.swift */; };
 		DE4A382E27BBFCDC00EF7288 /* OperationStateInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4A382B27BBFCDC00EF7288 /* OperationStateInfoModel.swift */; };
@@ -84,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DE184F2928411ADF00B8622C /* WorkableItem++Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkableItem++Protocol.swift"; sourceTree = "<group>"; };
+		DE184F2B28411AF100B8622C /* WorkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkItem.swift; sourceTree = "<group>"; };
 		DE1A7B2327382CB6006AFE65 /* StateFullOperation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StateFullOperation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1A7B7527382DC8006AFE65 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1A7B7727382DC8006AFE65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +95,6 @@
 		DE1A7B8027382DCC006AFE65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE1A7B8327382DCC006AFE65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE1A7B8527382DCC006AFE65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE4A37FD27BBFC6400EF7288 /* SFOAlias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFOAlias.swift; sourceTree = "<group>"; };
 		DE4A37FF27BBFC6A00EF7288 /* OperationQueue++Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationQueue++Extension.swift"; sourceTree = "<group>"; };
 		DE4A380127BBFC6F00EF7288 /* SFOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFOError.swift; sourceTree = "<group>"; };
 		DE4A380427BBFC9000EF7288 /* OperationFinishState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationFinishState.swift; sourceTree = "<group>"; };
@@ -113,7 +114,6 @@
 		DE4A381C27BBFCC500EF7288 /* OperationContextStateObject++Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationContextStateObject++Protocol.swift"; sourceTree = "<group>"; };
 		DE4A381D27BBFCC500EF7288 /* OperationLifeCycleProvider++Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationLifeCycleProvider++Protocol.swift"; sourceTree = "<group>"; };
 		DE4A381E27BBFCC500EF7288 /* OperationState++Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationState++Protocol.swift"; sourceTree = "<group>"; };
-		DE4A381F27BBFCC500EF7288 /* QueueableOperation++Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QueueableOperation++Protocol.swift"; sourceTree = "<group>"; };
 		DE4A382027BBFCC600EF7288 /* StateSupplementaryActionProvider++Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StateSupplementaryActionProvider++Protocol.swift"; sourceTree = "<group>"; };
 		DE4A382A27BBFCDC00EF7288 /* OperationStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationStates.swift; sourceTree = "<group>"; };
 		DE4A382B27BBFCDC00EF7288 /* OperationStateInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationStateInfoModel.swift; sourceTree = "<group>"; };
@@ -217,7 +217,6 @@
 				DE4A37F627BBFC0A00EF7288 /* Models */,
 				DE4A37FC27BBFC3C00EF7288 /* Extensions */,
 				DE4A37FB27BBFC3600EF7288 /* Errors */,
-				DE4A37FD27BBFC6400EF7288 /* SFOAlias.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -235,6 +234,7 @@
 		DE4A37F727BBFC1C00EF7288 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				DE184F2928411ADF00B8622C /* WorkableItem++Protocol.swift */,
 				DE4A381827BBFCC500EF7288 /* ConfigurableOperation++Protocol.swift */,
 				DE4A381927BBFCC500EF7288 /* ControlableOperation++Protocol.swift */,
 				DE4A381A27BBFCC500EF7288 /* IdentifiableOperation++Protocol.swift */,
@@ -242,7 +242,6 @@
 				DE4A381B27BBFCC500EF7288 /* OperationControlable++Protocol.swift */,
 				DE4A381D27BBFCC500EF7288 /* OperationLifeCycleProvider++Protocol.swift */,
 				DE4A381E27BBFCC500EF7288 /* OperationState++Protocol.swift */,
-				DE4A381F27BBFCC500EF7288 /* QueueableOperation++Protocol.swift */,
 				DE4A382027BBFCC600EF7288 /* StateSupplementaryActionProvider++Protocol.swift */,
 			);
 			path = Protocols;
@@ -272,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4A383027BBFD0600EF7288 /* Threading.swift */,
+				DE184F2B28411AF100B8622C /* WorkItem.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -484,9 +484,9 @@
 				DE4A380927BBFC9000EF7288 /* OperationFinishState.swift in Sources */,
 				DE4A382627BBFCC600EF7288 /* OperationLifeCycleProvider++Protocol.swift in Sources */,
 				DE4A380227BBFC6F00EF7288 /* SFOError.swift in Sources */,
+				DE184F2A28411ADF00B8622C /* WorkableItem++Protocol.swift in Sources */,
 				DE4A382E27BBFCDC00EF7288 /* OperationStateInfoModel.swift in Sources */,
 				DE4A382127BBFCC600EF7288 /* ConfigurableOperation++Protocol.swift in Sources */,
-				DE4A37FE27BBFC6400EF7288 /* SFOAlias.swift in Sources */,
 				DE4A381627BBFCB100EF7288 /* SafeOperation++IdentifiableOperation.swift in Sources */,
 				DE4A382527BBFCC600EF7288 /* OperationContextStateObject++Protocol.swift in Sources */,
 				DE4A382927BBFCC600EF7288 /* StateSupplementaryActionProvider++Protocol.swift in Sources */,
@@ -494,9 +494,9 @@
 				DE4A382727BBFCC600EF7288 /* OperationState++Protocol.swift in Sources */,
 				DE4A382327BBFCC600EF7288 /* IdentifiableOperation++Protocol.swift in Sources */,
 				DE4A380A27BBFC9000EF7288 /* OperationReadyState.swift in Sources */,
+				DE184F2C28411AF100B8622C /* WorkItem.swift in Sources */,
 				DE4A382F27BBFCDC00EF7288 /* OperationIdentifier.swift in Sources */,
 				DE4A383127BBFD0600EF7288 /* Threading.swift in Sources */,
-				DE4A382827BBFCC600EF7288 /* QueueableOperation++Protocol.swift in Sources */,
 				DE4A380027BBFC6A00EF7288 /* OperationQueue++Extension.swift in Sources */,
 				DE4A382427BBFCC600EF7288 /* OperationControlable++Protocol.swift in Sources */,
 				DE4A381527BBFCB100EF7288 /* SafeOperation.swift in Sources */,

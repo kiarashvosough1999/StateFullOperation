@@ -27,14 +27,10 @@
 
 import Foundation
 
-/*
- 
- Provide an interface to handle state of an operation and control over them.
- Every state of the operation should impelement this protocol,
- State managment inside Operation is handled by `OperationContextStateProvider`
- 
- */
 
+/// Provide an interface to handle state of an operation and control over them.
+/// Every state of the operation should impelement this protocol,
+/// State managment inside Operation is handled by `OperationContextStateProvider`
 public protocol OperationStateBase: AnyObject { }
 
 public protocol OperationState: OperationStateBase {
@@ -48,14 +44,19 @@ public protocol OperationState: OperationStateBase {
     
     init(context: Context?, queueState: OperationStateInfoModel)
     
-    /// A delegate to AsynchronousOperation for handeling state chnages
+    /// A delegate to ``StateFullOperation`` for handeling state chnages
     var context: Context? { get set }
     
     var isExecuting: Bool { get }
+    
     var isFinished: Bool { get }
+    
     var isCanceled: Bool { get }
+    
     var isSuspended: Bool { get }
+    
     var queueState: OperationStateInfoModel { get }
+    
     var state: OperationStates { get }
     
     /// Indicating whether user can change the operation configuration or not.
@@ -63,7 +64,7 @@ public protocol OperationState: OperationStateBase {
     var canModifyOperationConfig: Bool { get }
     
     /// Complete operation by calling
-    /// 1. `onFinish` block
+    /// 1.`onFinish` block
     /// 2. Changing state to `OperationFinishState`
     /// - Parameter execute: onFinish block which was provoded by overriding it on subclasses
     /// - Throws: OperationControllerError.dealocatedOperation or
@@ -74,7 +75,7 @@ public protocol OperationState: OperationStateBase {
     /// also the `start` method on operation should call this method
     func start() throws
     
-    func await() throws
+    func await<Q>(inside queue: Q) throws where Q: OperationQueue
     
     func cancelOperation() throws
     

@@ -122,7 +122,7 @@ final public class OperationReadyState: OperationState {
     /// - Parameter after: amount of time to tolerate until the operation will be added
     /// - Throws: Throws OperationControllerError.dealocatedOperation if the context is nil
     
-    public func await() throws {
+    public func await<Q>(inside queue: Q) throws where Q: OperationQueue {
         guard let context = context else {
             throw SFOError.operationStateError(reason: .dealocatedOperation(
                 """
@@ -137,6 +137,6 @@ final public class OperationReadyState: OperationState {
             return
         }
         
-        try context.enqueue()
+        try context.enqueue(into: queue)
     }
 }

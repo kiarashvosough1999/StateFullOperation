@@ -26,15 +26,9 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
-
-/**
  
- This structure can be used to provide unique id for each operation.
- 
- It can be extended and add more identifier for your own usage.
- 
- */
-
+/// This structure can be used to provide unique id for each operation.
+/// It can be extended and add more identifier for your own usage.
 public struct OperationIdentifier: Hashable {
     
     public typealias RawValue = String

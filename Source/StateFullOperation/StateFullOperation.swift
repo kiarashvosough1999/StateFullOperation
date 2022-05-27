@@ -84,14 +84,14 @@ public class StateFullOperation: SafeOperation,
     // MARK: -  Execution Blocks For Each State
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `finished`.
-    open var onFinished: WorkerBlock?
+    open var onFinished: StateChangeNotifierBlock?
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `executing`.
     /// override this property and provide a block of what you want when the operation start.
-    open var onExecuting: WorkerBlock?
+    open var onExecuting: StateChangeNotifierBlock?
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `canceled`.
-    open var onCanceled: WorkerBlock?
+    open var onCanceled: StateChangeNotifierBlock?
     
     /// Could be provided by any subclass to execute some code after the operation state changes to `suspended`.
     /// The operation itself does not support suspending.
@@ -100,7 +100,7 @@ public class StateFullOperation: SafeOperation,
     /// For URLSessionDataTasks:
     /// - Provide block only on download and upload tasks
     /// - Providing block on other tasks and using it may result in crash, leak and unexpected usage of network data.
-    open var onSuspended: WorkerBlock?
+    open var onSuspended: StateChangeNotifierBlock?
     
     //MARK: - init
     
@@ -113,7 +113,7 @@ public class StateFullOperation: SafeOperation,
     public init(operationQueue: OperationQueue?,
                 operationState: OperationState = OperationReadyState()) {
         self.operationState = operationState
-        super.init(operationQueue: operationQueue)
+        super.init()
         self.operationState.context = self
     }
     
@@ -130,7 +130,7 @@ public class StateFullOperation: SafeOperation,
     /// - Parameter state: Next State
     /// - Returns: Return new state of the context
     @discardableResult
-    open func changeState(new state: OperationState) -> OperationState {
+    public func changeState(new state: OperationState) -> OperationState {
         $operationState.write { obj -> OperationState in
             if state.state == obj.state { return obj }
             obj = state
@@ -178,9 +178,16 @@ public class StateFullOperation: SafeOperation,
     /// - Throws: Error of kind `OperationControllerError`
     /// - Returns: Self
     @discardableResult
-    open func await() throws -> Self {
-        try $operationState.read { state in
-            try state.await()
+    open func await<Q>(inside queue: Q) throws -> Self where Q: OperationQueue {
+        try $operationState.read { [weak queue] state in
+            guard let queue = queue else {
+                throw SFOError.stateFullOperationError(
+                    reason: .queueDealocated(
+                        message: "Queue was deallocated when attempting to await"
+                    )
+                )
+            }
+            try state.await(inside: queue)
         }
         return self
     }

@@ -7,37 +7,37 @@
 
 import Foundation
 
-/*
- 
- This is an abstract protocol for Operation
- It is impelemented by `SafeOperation` in order to provide an interface to use `Opreation` in more convinient way than the basic methods it has.
- 
- Some of the methods are working behalf of Operation's original method.
- 
- */
-
+/// This is an abstract protocol for **Operation**.
+/// It is impelemented by ``SafeOperation`` in order to provide an interface to use **Opreation** in more convinient way than the basic methods it has.
+/// Some of the methods are working behalf of Operation's original method.
 public protocol OperationControlable: AnyObject {
+
+    typealias OperationCompletedSignal = () throws -> Void
+
+    typealias OperationBlock = (OperationCompletedSignal) throws -> Void
     
-    var onCanceledOperationAction: SFOAlias.OnOperationCanceled? { get }
+    /// Trigger when operation is about to be canceled.
+    var willCanceledOperationAction: WorkableItem? { get }
     
-    var onFinishedOperationAction: SFOAlias.OnOperationFinished? { get }
+    /// Trigger when operation was canceled.
+    var didCanceledOperationAction: WorkableItem? { get }
     
-    var onExecutingOperationAction: SFOAlias.OnOperationExecuting? { get }
+    /// Trigger when operation is about to be finished.
+    var willFinishedOperationAction: WorkableItem? { get }
+
+    /// Trigger when operation was finished.
+    var didFinishedOperationAction: WorkableItem? { get }
     
-    var operationExecutable: SFOAlias.OperationBlock? { get }
+
+    /// For simple use of executing block known as `WorkItem`.
+    var operationExecutable: OperationBlock? { get }
     
-    /// Blocks the current thread until all of the receiver’s queued and executing operations finish executing.
-    /// When called, this method blocks the current thread and waits for the receiver’s current and queued operations to finish executing.
-    /// While the current thread is blocked, the receiver continues to launch already queued operations and monitor those that are executing.
-    /// During this time, the current thread cannot add operations to the queue, but other threads may. Once all of the pending operations are finished, this method returns.
-    /// If there are no operations in the queue, this method returns immediately.
-    func waitUntilAllOperationAreFinished() throws
     
     /// ٍEnququ Self in `OperationQueue` to start
     /// This method should be called instead of `operationQueue.addOperation(self)`
     /// `operationQueue.addOperation(self)` was imeplemnted in super class with more safety
     ///  - Throws: queueFoundNil ---> if the `OperationQueue` is nil
-    func enqueue() throws
+    func enqueue<T>(into queue: T) throws where T: OperationQueue
     
     /// This method does not force your operation code to stop.
     /// Instead, it updates the object’s internal flags to reflect the change in state.

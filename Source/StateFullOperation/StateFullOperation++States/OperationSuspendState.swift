@@ -49,7 +49,7 @@ internal final class OperationSuspendState: OperationState {
         self.queueState = queueState
     }
     
-    internal func await() throws {
+    internal func await<Q>(inside queue: Q) throws where Q : OperationQueue {
         guard let context = context else {
             throw SFOError.operationStateError(reason: .dealocatedOperation(
                 """
@@ -60,7 +60,7 @@ internal final class OperationSuspendState: OperationState {
         try context
             .changeState(new: OperationReadyState(context: context,
                                                   queueState: queueState))
-            .await()
+            .await(inside: queue)
     }
     
     internal func start() throws {

@@ -72,7 +72,7 @@ internal final class OperationExecutingState: OperationState  {
     /// - Throws:
     ///  - OperationControllerError.dealocatedOperation on context nil
     ///  - OperationControllerError.operationQueueIsNil on underlyingQueue nil
-    internal func await() throws {
+    internal func await<Q>(inside queue: Q) throws where Q : OperationQueue {
         guard let context = context else {
             throw SFOError.operationStateError(reason: .dealocatedOperation(
                 """
